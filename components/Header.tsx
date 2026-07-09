@@ -85,7 +85,7 @@ export default function Header() {
       <div className="border-b border-teal-100">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
           <Link href="/" aria-label="Phoenix — home">
-            <Logo size={40} tagline />
+            <Logo size={44} />
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex">

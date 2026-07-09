@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   },
   description:
     "Genuine turnaround solutions for businesses under pressure. When insolvency is avoidable, Phoenix helps directors stabilise, restructure and rebuild.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   CheckCircle2,
   Phone,
@@ -23,7 +24,6 @@ import {
 } from "lucide-react";
 import Container from "@/components/Container";
 import CTAButton from "@/components/CTAButton";
-import { LogoMark } from "@/components/Logo";
 import { Testimonial } from "@/components/TrustBar";
 import { CONTACT } from "@/lib/contact";
 
@@ -103,7 +103,14 @@ export default function Home() {
           <div className="relative lg:col-span-5">
             <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-gold-400/10 via-pink-400/10 to-teal-500/10 blur-3xl" />
             <div className="mx-auto w-full max-w-md">
-              <LogoMark size={420} />
+              <Image
+                src="/logo-mark.png"
+                alt=""
+                width={512}
+                height={512}
+                className="h-auto w-full"
+                priority
+              />
             </div>
           </div>
         </Container>
