@@ -96,6 +96,14 @@ export const faqCategories: FAQCategory[] = [
     category: "Directors & Legal",
     items: [
       {
+        q: "What is the difference between CVL and liquidation?",
+        a: "A Creditors' Voluntary Liquidation (CVL) is one specific route into liquidation, initiated by the directors once they've concluded the company can't continue — 'liquidation' is the broader umbrella term for winding a company up and realising its assets, which can happen through a CVL or through other routes such as a court-ordered (compulsory) liquidation.",
+      },
+      {
+        q: "Will I be personally liable for company debts?",
+        a: "In most cases a director isn't personally liable for company debts, provided they've continued to act properly — this changes if there's evidence of wrongful trading, personal guarantees, or other specific conduct, which is exactly what Director Advisory exists to clarify, in confidence.",
+      },
+      {
         q: "Am I personally liable if the business fails?",
         a: "It depends on your specific conduct and circumstances — this is exactly what Director Advisory exists to clarify, in confidence.",
       },

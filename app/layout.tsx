@@ -14,13 +14,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.phoenixrecovery.example"),
+  metadataBase: new URL("https://www.the-phoenix.co.uk"),
   title: {
-    default: "Phoenix | Business Recovery & Turnaround Specialists",
+    default: "Phoenix | Corporate Recovery & Turnaround Specialists",
     template: "%s | Phoenix",
   },
   description:
-    "Phoenix helps directors and businesses in financial distress recover, restructure and rebuild — confidentially. Turning setbacks into comebacks.",
+    "Genuine turnaround solutions for businesses under pressure. When insolvency is avoidable, Phoenix helps directors stabilise, restructure and rebuild.",
 };
 
 export default function RootLayout({

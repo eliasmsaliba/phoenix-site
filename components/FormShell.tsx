@@ -8,11 +8,13 @@ export default function FormShell({
   successTitle = "Thank you — we've got it.",
   successBody = "A member of the Phoenix team will be in touch shortly. Everything you've shared stays confidential.",
   submitLabel = "Submit",
+  submitClassName,
 }: {
   children: ReactNode;
   successTitle?: string;
   successBody?: string;
   submitLabel?: string;
+  submitClassName?: string;
 }) {
   const [submitted, setSubmitted] = useState(false);
 
@@ -38,7 +40,10 @@ export default function FormShell({
       {children}
       <button
         type="submit"
-        className="mt-2 inline-flex items-center justify-center rounded-full bg-red-500 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-red-600"
+        className={
+          submitClassName ??
+          "mt-2 inline-flex items-center justify-center rounded-full bg-red-500 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-red-600"
+        }
       >
         {submitLabel}
       </button>
@@ -52,21 +57,23 @@ export function Field({
   type = "text",
   required = true,
   placeholder,
+  hideLabel = false,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
   placeholder?: string;
+  hideLabel?: boolean;
 }) {
   return (
     <label className="flex flex-col gap-1.5 text-sm font-medium text-ink-900">
-      {label}
+      <span className={hideLabel ? "sr-only" : undefined}>{label}</span>
       <input
         name={name}
         type={type}
         required={required}
-        placeholder={placeholder}
+        placeholder={placeholder ?? label}
         className="rounded-lg border border-teal-200 bg-white px-4 py-2.5 text-base font-normal text-ink-950 placeholder:text-ink-300 focus:border-teal-500 focus:outline-none"
       />
     </label>
@@ -111,20 +118,24 @@ export function TextAreaField({
   name,
   required = false,
   placeholder,
+  hideLabel = false,
+  rows = 4,
 }: {
   label: string;
   name: string;
   required?: boolean;
   placeholder?: string;
+  hideLabel?: boolean;
+  rows?: number;
 }) {
   return (
     <label className="flex flex-col gap-1.5 text-sm font-medium text-ink-900">
-      {label}
+      <span className={hideLabel ? "sr-only" : undefined}>{label}</span>
       <textarea
         name={name}
         required={required}
-        placeholder={placeholder}
-        rows={4}
+        placeholder={placeholder ?? label}
+        rows={rows}
         className="rounded-lg border border-teal-200 bg-white px-4 py-2.5 text-base font-normal text-ink-950 placeholder:text-ink-300 focus:border-teal-500 focus:outline-none"
       />
     </label>

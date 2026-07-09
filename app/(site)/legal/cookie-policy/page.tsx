@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Container from "@/components/Container";
 import Breadcrumb from "@/components/Breadcrumb";
+import { CONTACT } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
@@ -67,7 +68,7 @@ export default function CookiePolicyPage() {
             </section>
             <section>
               <h2 className="font-display text-xl font-semibold text-ink-950">Contact</h2>
-              <p className="mt-2">Questions about this policy can be sent to <a href="mailto:privacy@phoenixrecovery.example" className="font-medium text-teal-700 hover:underline">privacy@phoenixrecovery.example</a>.</p>
+              <p className="mt-2">Questions about this policy can be sent to <a href={CONTACT.emailHref} className="font-medium text-teal-700 hover:underline">{CONTACT.email}</a>.</p>
             </section>
           </div>
         </div>

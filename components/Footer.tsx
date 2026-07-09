@@ -1,8 +1,27 @@
 import Link from "next/link";
-import { Phone, Mail } from "lucide-react";
-import Logo from "./Logo";
-import { services } from "@/data/services";
-import { industries } from "@/data/industries";
+import { Phone, Mail, MapPin, Plus, Minus } from "lucide-react";
+import { LogoMark } from "./Logo";
+import FormShell, { Field, TextAreaField } from "./FormShell";
+import { CONTACT } from "@/lib/contact";
+
+const footerFaqs = [
+  {
+    q: "What is the difference between CVL and liquidation?",
+    a: "A CVL (Creditors' Voluntary Liquidation) is one specific route into liquidation, started by the directors — liquidation is the broader term for winding a company up.",
+  },
+  {
+    q: "Will I be personally liable for company debts?",
+    a: "In most cases, no — provided you've continued to act properly. This is exactly what a confidential Director Support conversation exists to clarify.",
+  },
+  {
+    q: "How much does it cost?",
+    a: "Your initial consultation is free. Beyond that, fees are agreed upfront and fixed wherever possible, before any work begins.",
+  },
+  {
+    q: "How long does the process take?",
+    a: "Stabilisation is often achieved within 1–2 weeks; full restructuring engagements typically run 4–8 weeks.",
+  },
+];
 
 function LinkedinGlyph() {
   return (
@@ -22,113 +41,144 @@ function XGlyph() {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-teal-900/40 bg-ink-950 text-paper-100">
+    <footer className="border-t border-teal-100">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
-          <div className="lg:col-span-1">
-            <Logo size={32} dark />
-            <p className="mt-4 max-w-[26ch] text-sm italic text-teal-300">
-              Turning Setbacks into Comebacks
+        <div className="grid gap-12 lg:grid-cols-3">
+          {/* Common Questions */}
+          <div>
+            <h2 className="inline-block border-b-2 border-teal-500 pb-1 font-display text-xl font-semibold text-ink-950">
+              Common Questions
+            </h2>
+            <div className="mt-5 flex flex-col">
+              {footerFaqs.map((item) => (
+                <details key={item.q} className="group border-b border-teal-100 py-3.5 first:pt-0">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-ink-900 marker:content-none [&::-webkit-details-marker]:hidden">
+                    {item.q}
+                    <span className="relative h-4 w-4 shrink-0 text-teal-600">
+                      <Plus size={16} className="absolute inset-0 group-open:hidden" />
+                      <Minus size={16} className="absolute inset-0 hidden group-open:block" />
+                    </span>
+                  </summary>
+                  <p className="mt-2 pr-6 text-sm text-ink-700">{item.a}</p>
+                </details>
+              ))}
+            </div>
+            <Link
+              href="/faqs"
+              className="mt-6 inline-flex items-center justify-center rounded-md border-2 border-teal-600 px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-teal-700 hover:bg-teal-50"
+            >
+              View All FAQs
+            </Link>
+          </div>
+
+          {/* Ready to Talk */}
+          <div>
+            <h2 className="inline-block border-b-2 border-teal-500 pb-1 font-display text-xl font-semibold text-ink-950">
+              Ready to Talk?
+            </h2>
+            <p className="mt-5 max-w-sm text-sm text-ink-700">
+              A confidential conversation could help you understand your options
+              and take the next step with confidence.
             </p>
-            <div className="mt-6 flex gap-3">
+            <div className="mt-6 flex flex-col gap-4">
+              <a href={CONTACT.phoneHref} className="flex items-center gap-3 text-sm font-semibold text-ink-900 hover:text-teal-700">
+                <Phone size={16} className="shrink-0 text-teal-600" />
+                {CONTACT.phoneDisplay}
+              </a>
+              <a href={CONTACT.emailHref} className="flex items-center gap-3 text-sm font-semibold text-ink-900 hover:text-teal-700">
+                <Mail size={16} className="shrink-0 text-teal-600" />
+                {CONTACT.email}
+              </a>
+              <div className="flex items-start gap-3 text-sm text-ink-700">
+                <MapPin size={16} className="mt-0.5 shrink-0 text-teal-600" />
+                <span>
+                  {CONTACT.addressLines.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </span>
+              </div>
+            </div>
+            <div className="mt-8 flex gap-3">
               <a
                 href="#"
                 aria-label="Phoenix on LinkedIn"
-                className="rounded-full border border-white/15 p-2 text-paper-100 hover:bg-white/10"
+                className="rounded-full border border-teal-200 p-2 text-ink-700 hover:bg-teal-50"
               >
                 <LinkedinGlyph />
               </a>
               <a
                 href="#"
                 aria-label="Phoenix on X"
-                className="rounded-full border border-white/15 p-2 text-paper-100 hover:bg-white/10"
+                className="rounded-full border border-teal-200 p-2 text-ink-700 hover:bg-teal-50"
               >
                 <XGlyph />
               </a>
             </div>
           </div>
 
-          <FooterCol title="Services">
-            {services.map((s) => (
-              <FooterLink key={s.slug} href={`/services/${s.slug}`}>
-                {s.name}
-              </FooterLink>
-            ))}
-          </FooterCol>
-
-          <FooterCol title="Industries">
-            {industries.map((i) => (
-              <FooterLink key={i.slug} href={`/industries/${i.slug}`}>
-                {i.name}
-              </FooterLink>
-            ))}
-            <FooterLink href="/about">About Phoenix</FooterLink>
-            <FooterLink href="/process">Our Process</FooterLink>
-            <FooterLink href="/resources">Resources</FooterLink>
-          </FooterCol>
-
-          <FooterCol title="Get Help">
-            <FooterLink href="/book-consultation">Book Consultation</FooterLink>
-            <FooterLink href="/request-callback">Request a Callback</FooterLink>
-            <FooterLink href="/emergency-support">Emergency Business Support</FooterLink>
-            <FooterLink href="/guides">Download Guides</FooterLink>
-            <FooterLink href="/faqs">FAQs</FooterLink>
-          </FooterCol>
-
-          <FooterCol title="Company">
-            <FooterLink href="/contact">Contact</FooterLink>
-            <FooterLink href="/legal/privacy-policy">Privacy Policy</FooterLink>
-            <FooterLink href="/legal/terms-conditions">Terms &amp; Conditions</FooterLink>
-            <FooterLink href="/legal/cookie-policy">Cookie Policy</FooterLink>
-            <a
-              href="tel:+448001234567"
-              className="mt-2 flex items-center gap-1.5 text-sm text-paper-100/80 hover:text-white"
-            >
-              <Phone size={14} /> 0800 123 4567
-            </a>
-            <a
-              href="mailto:hello@phoenixrecovery.example"
-              className="flex items-center gap-1.5 text-sm text-paper-100/80 hover:text-white"
-            >
-              <Mail size={14} /> hello@phoenixrecovery.example
-            </a>
-          </FooterCol>
+          {/* Request a Confidential Consultation */}
+          <div className="rounded-2xl bg-red-500 p-7 text-white">
+            <h2 className="font-display text-xl font-semibold">
+              Request a Confidential Consultation
+            </h2>
+            <p className="mt-2 text-sm text-white/85">
+              Complete the form below and a member of our team will be in touch.
+            </p>
+            <div className="mt-5">
+              <FormShell
+                submitLabel="Send Enquiry"
+                submitClassName="mt-1 inline-flex w-full items-center justify-center rounded-md bg-ink-950 px-6 py-3 text-xs font-bold uppercase tracking-wide text-white transition-colors hover:bg-ink-900"
+              >
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <Field label="Full Name" name="name" hideLabel />
+                  <Field label="Company Name" name="company" required={false} hideLabel />
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <Field label="Email Address" name="email" type="email" hideLabel />
+                  <Field label="Phone Number" name="phone" type="tel" hideLabel />
+                </div>
+                <TextAreaField label="How can we help?" name="message" hideLabel rows={3} />
+              </FormShell>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-paper-100/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Wreckingball Business Consultancy trading as Phoenix Recovery Ltd. All rights reserved.</p>
-          <p>Registered office details and company number here.</p>
+      <div className="border-t border-navy-900 bg-navy-950">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-4 py-6 text-center sm:flex-row sm:justify-between sm:px-6 sm:text-left lg:px-8">
+          <div className="flex items-center gap-2.5">
+            <LogoMark size={26} />
+            <div className="flex flex-col leading-none">
+              <span className="font-display text-sm font-bold uppercase tracking-wide text-white">
+                Phoenix
+              </span>
+              <span className="mt-0.5 text-[10px] text-gold-400">
+                Turning Setbacks into Comebacks
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-paper-100/70">
+            <Link href="/legal/privacy-policy" className="hover:text-white">
+              Privacy Policy
+            </Link>
+            <span aria-hidden="true">|</span>
+            <Link href="/legal/terms-conditions" className="hover:text-white">
+              Terms &amp; Conditions
+            </Link>
+            <span aria-hidden="true">|</span>
+            <Link href="/legal/cookie-policy" className="hover:text-white">
+              Cookies
+            </Link>
+          </div>
+
+          <p className="text-xs text-paper-100/60">
+            © {new Date().getFullYear()} Wreckingball Business Consultancy trading as Phoenix Recovery Ltd. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
-  );
-}
-
-function FooterCol({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <h3 className="font-display text-sm font-semibold text-white">{title}</h3>
-      <div className="mt-4 flex flex-col gap-2.5">{children}</div>
-    </div>
-  );
-}
-
-function FooterLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link href={href} className="text-sm text-paper-100/70 hover:text-white">
-      {children}
-    </Link>
   );
 }

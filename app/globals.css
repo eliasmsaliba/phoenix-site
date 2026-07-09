@@ -20,10 +20,25 @@
   --color-steel-500: #358c88;
   --color-muted-500: #487373;
 
-  /* Accent red — CTAs only */
+  /* Accent red — CTAs and headline emphasis */
   --color-red-500: #ed2024;
   --color-red-600: #cd171b;
   --color-red-700: #a91216;
+
+  /* Gold/orange — brand mark, Marketing, Grow stage */
+  --color-gold-400: #e6a94f;
+  --color-gold-500: #d98b3d;
+  --color-gold-600: #bd7328;
+
+  /* Coral — Restructure stage, secondary accent */
+  --color-coral-400: #f2967a;
+  --color-coral-500: #ec6f4d;
+  --color-coral-600: #d9532f;
+
+  /* Pink — Branding, Rebuild stage, testimonial surface */
+  --color-pink-300: #f6cdd0;
+  --color-pink-400: #f0a3a8;
+  --color-pink-500: #e87b8a;
 
   /* Warm-cool neutrals, biased toward the teal family rather than pure grey */
   --color-ink-950: #0e1a19;
@@ -34,6 +49,10 @@
   --color-paper-50: #fbfdfc;
   --color-paper-100: #f3f8f7;
   --color-paper-200: #e8f1f0;
+
+  /* Navy — footer base, distinct from the teal-tinted ink scale */
+  --color-navy-950: #0d1420;
+  --color-navy-900: #131d2e;
 }
 
 @layer base {

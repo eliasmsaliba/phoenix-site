@@ -5,7 +5,7 @@ export default function CTABand({
   eyebrow = "Talk to Phoenix",
   headline,
   body,
-  ctaLabel = "Book a Confidential Consultation",
+  ctaLabel = "Request a Confidential Consultation",
   ctaHref = "/confidential-consultation",
 }: {
   eyebrow?: string;

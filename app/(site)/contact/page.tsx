@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Phone, Mail, MessageSquare } from "lucide-react";
+import { Phone, Mail, MessageSquare, MapPin } from "lucide-react";
 import Container from "@/components/Container";
 import Breadcrumb from "@/components/Breadcrumb";
 import PageHero from "@/components/PageHero";
 import FormShell, { Field, SelectField, TextAreaField, CheckboxField } from "@/components/FormShell";
 import Link from "next/link";
+import { CONTACT } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Contact Phoenix",
@@ -13,8 +14,8 @@ export const metadata: Metadata = {
 };
 
 const options = [
-  { icon: Phone, title: "Call Now", body: "Mon–Fri, 8am–7pm. Urgent matters answered same day.", cta: "0800 123 4567", href: "tel:+448001234567" },
-  { icon: Mail, title: "Email", body: "We reply within one business day.", cta: "hello@phoenixrecovery.example", href: "mailto:hello@phoenixrecovery.example" },
+  { icon: Phone, title: "Call Now", body: "Mon–Fri, 8am–7pm. Urgent matters answered same day.", cta: CONTACT.phoneDisplay, href: CONTACT.phoneHref },
+  { icon: Mail, title: "Email", body: "We reply within one business day.", cta: CONTACT.email, href: CONTACT.emailHref },
   { icon: MessageSquare, title: "Request a Callback", body: "Leave your number and we'll call you.", cta: "Request a callback", href: "/request-callback" },
 ];
 
@@ -95,14 +96,24 @@ export default function ContactPage() {
               <h3 className="font-display text-lg font-semibold text-ink-950">
                 Prefer to talk right now?
               </h3>
-              <a href="tel:+448001234567" className="mt-3 block font-display text-2xl font-semibold text-teal-700">
-                0800 123 4567
+              <a href={CONTACT.phoneHref} className="mt-3 block font-display text-2xl font-semibold text-teal-700">
+                {CONTACT.phoneDisplay}
               </a>
               <p className="mt-3 text-sm text-ink-700">
                 Every call is confidential. There is no obligation to proceed with
                 anything after speaking with us.
               </p>
-              <Link href="/emergency-support" className="mt-4 inline-block text-sm font-semibold text-red-600 hover:underline">
+              <div className="mt-5 flex items-start gap-2.5 border-t border-teal-100 pt-5 text-sm text-ink-700">
+                <MapPin size={16} className="mt-0.5 shrink-0 text-teal-600" />
+                <span>
+                  {CONTACT.addressLines.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </span>
+              </div>
+              <Link href="/emergency-support" className="mt-5 inline-block text-sm font-semibold text-red-600 hover:underline">
                 Need help today? See Emergency Support →
               </Link>
             </div>

@@ -3,6 +3,7 @@ import { Phone, AlertTriangle } from "lucide-react";
 import Container from "@/components/Container";
 import Breadcrumb from "@/components/Breadcrumb";
 import FormShell, { Field, TextAreaField } from "@/components/FormShell";
+import { CONTACT } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Emergency Business Support — Call Now",
@@ -33,11 +34,11 @@ export default function EmergencySupportPage() {
               now. This line is monitored for urgent cases.
             </p>
             <a
-              href="tel:+448001234567"
+              href={CONTACT.phoneHref}
               className="mt-8 inline-flex items-center gap-3 rounded-full bg-red-500 px-8 py-4 text-lg font-semibold text-white hover:bg-red-600"
             >
               <Phone size={20} />
-              0800 123 4567 — Call Now
+              {CONTACT.phoneDisplay} — Call Now
             </a>
           </div>
         </Container>
